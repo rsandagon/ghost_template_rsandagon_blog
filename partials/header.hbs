@@ -1,0 +1,17 @@
+<div role='banner' class="header" {{#if @blog.cover}}style="background-image: url({{@blog.cover}})"{{/if}}>
+	<div class="container">
+		{{#if @blog.logo}}
+			<a class="logo" href="{{@blog.url}}"><img src="{{@blog.logo}}" alt="{{@blog.title}}" /></a>
+		{{/if}}
+		<h1 class="blog_title">
+			<a title="{{@blog.title}}" href='{{@blog.url}}'>
+				{{{@blog.title}}}
+			</a>
+		</h1>
+		<h2 class="blog_description">
+			<a title="{{@blog.title}}" href='{{@blog.url}}'>
+				{{@blog.description}}
+			</a>
+		</h2>
+	</div>
+</div>

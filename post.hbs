@@ -1,0 +1,58 @@
+{{!< default}}
+<main class="main_post" role="main">
+	<article class="post_single" role="article" itemscope itemtype="http://schema.org/Article">
+		{{#post}}
+		<header role='banner' class="single_post_header">
+			<div class="container">	
+				{{#if @blog.logo}}
+					<a class="logo" href="{{@blog.url}}"><img src="{{@blog.logo}}" alt="{{@blog.title}}" /></a>
+				{{/if}}
+				
+				<time class="post_date" datetime="{{date format="YYYY-MM-DD"}}" itemprop="datePublished">
+					{{date format='MMMM DD, YYYY'}}
+				</time>
+				<h1 class="post_title" itemprop="headline">{{title}}</h1>
+			</div>
+		</header>
+		<div class="container">	
+			<div class="post_content" itemprop="articleBody">
+				{{content}}
+			</div>
+			{{#if tags}}
+			<div class="post_tags">
+				<span>Tags:</span> {{tags separator=", "}}
+			</div>
+			{{/if}}
+			<div class="post_share">
+				<a class="share" target="_blank" href="http://twitter.com/share?text={{title}}&url={{url absolute="true"}}"><span class="hidethis_ace"><i class="icon-twitter"></i>Twitter</span></a>
+				<a class="share" target="_blank" href="http://www.facebook.com/sharer.php?u={{url absolute="true"}}"><span class="hidethis_ace"><i class="icon-facebook"></i>Facebook</span></a>
+				<a class="share" target="_blank" href="https://plus.google.com/share?url={{url absolute="true"}}"><span class="hidethis_ace"><i class="icon-google-plus"></i>Google+</span></a>
+			</div>
+			{{#if author}}
+				<footer class="post_footer clearfix">
+					<address itemscope itemtype="http://schema.org/Person">
+						{{#if author.image}}
+						<div class="author_image clearfix">
+							<img src="{{author.image}}" itemprop="image" />
+						</div>
+						{{/if}}
+						<div class="author_info">
+							<h4 class="author_name"><span itemprop="author">{{author.name}}</span></h4>
+							{{#if author.website}}
+							<div class="author_website"><a href="{{author.website}}" itemprop="url">{{author.website}}</a></div>
+							{{/if}}
+							<p>{{author.bio}}</p>
+						</div>
+					</address>
+				</footer>
+			{{/if}}
+		</div>
+	</article>
+{{/post}}
+	{{#if pagination}}
+		<div class="pagination">
+			{{{pagination}}}
+		</div>
+	{{/if}}
+</main>
+{{> footer}}

@@ -1,0 +1,20 @@
+<footer class="foot">
+	<div class="foot_content">
+		<div class="container">
+			{{#if @blog.logo}}
+				<a class="foot_logo" href="{{@blog.url}}"><img src="{{@blog.logo}}" alt="{{@blog.title}}" /></a>
+			{{/if}}
+			<div class="foot_info">
+				<p>Copyright &copy; <a href="/">{{@blog.title}}</a> 2013 &bull; All rights reserved.</p>
+				<p>Proudly published with <a href="http://tryghost.org" target="_blank">Ghost</a>.</p>
+			</div>
+			<div class="foot_social">
+				<ul>
+					<li><a href="#" target="_blank"><i class="icon-twitter"></i></a></li>
+					<li><a href="#" target="_blank"><i class="icon-dribbble"></i></a></li>
+					<li><a href="{{@blog.url}}/rss/" target="_blank"><i class="icon-rss"></i></a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</footer>

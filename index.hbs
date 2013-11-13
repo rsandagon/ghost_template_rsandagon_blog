@@ -1,0 +1,27 @@
+{{!< default}}
+{{> header}}
+<main class="main" role="main">
+	<div class="container">
+		{{#foreach posts}}
+			<article class="post" role="article" itemscope itemtype="http://schema.org/Article">
+				<header class="post_header">
+					<h1 class="post_title" itemprop="headline">
+						<a href="{{{url}}}" rel="bookmark">{{title}}</a>
+					</h1>
+					<time class="post_date" datetime="{{date format="YYYY-MM-DD"}}" itemprop="datePublished">
+						{{date format='MMMM DD, YYYY'}}
+					</time>
+				</header>
+				<div class="post_excerpt" itemprop="articleBody">
+					{{excerpt words="28"}} [...] <a href="{{{url}}}" rel="bookmark">Read More</a>
+				</div>
+			</article>
+		{{/foreach}}
+			{{#if pagination}}
+			<div class="pagination">
+				{{{pagination}}}
+			</div>
+			{{/if}}
+	</div>
+</main>
+{{> footer}}

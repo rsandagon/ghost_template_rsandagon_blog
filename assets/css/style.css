@@ -1,0 +1,890 @@
+/* ==========================================================================
+   Table of Contents
+   ========================================================================== */
+
+/*
+
+    1.  Includes
+    2.  General
+    3.  Utilities
+    4.  General
+    5.  Index
+    6.  Third Party Elements
+    7.  Pagination
+    8.  Footer
+    9.  Media Queries (Tablet)
+    10. Media Queries (Mobile)
+
+ */
+
+/* ==========================================================================
+   1. Includes - Ground zero
+   ========================================================================== */
+
+@import url(normalize.css);
+
+/* ==========================================================================
+   2. General - Setting up some base styles
+   ========================================================================== */
+
+html {
+    height: 100%;
+    max-height: 100%;
+    font-size: 62.5%;
+}
+
+body {
+    height: 100%;
+    max-height: 100%;
+    font-family: 'Droid Serif', serif;
+    font-size: 17px;
+    line-height: 27px;
+    color: #677C97;
+	display: none;
+}
+
+::-moz-selection {
+    color: #304a6d;
+    background: #b9ffe9;
+    text-shadow: none;
+}
+
+::selection {
+    color: #304a6d;
+    background: #b9ffe9;
+    text-shadow: none;
+}
+
+h1, h2, h3,
+h4, h5, h6 {
+    text-rendering: optimizeLegibility;
+    line-height: 1;
+    margin-top: 0;
+    font-family: 'Roboto Slab', serif;
+	font-weight: 400;
+	letter-spacing: -1px;
+	color: #304a6d;
+}
+
+a {
+    color: #f43232;
+	text-decoration: none;
+	transition: all 250ms;
+	-webkit-transition: all 250ms;
+	-moz-transition: all 250ms;
+}
+
+a:hover {
+    color: #304a6d;
+}
+
+h1 a, h2 a, h3 a,
+h4 a, h5 a, h6 a {
+    color: #304a6d;
+}
+
+h1 a:hover, h2 a:hover, h3 a:hover,
+h4 a:hover, h5 a:hover, h6 a:hover {
+    color: #f43232;
+}
+
+hr {
+    display: block;
+    height: 2px;
+    border: 0;
+    border-top: 2px solid #e8ecf1;
+    margin: 3.2em 0;
+    padding: 0;
+}
+
+blockquote {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 40px 0;
+    padding: 0 0 0 40px;
+    border-left: 2px solid #e8ecf1;
+}
+
+blockquote p {
+    margin: 0.8em 0;
+    font-style: italic;
+	color: #677C97;
+}
+
+blockquote small {
+    display: inline-block;
+    margin: 0.8em 0 0.8em 1.5em;;
+    font-size:0.9em;
+    color: #ccc;
+}
+
+blockquote small:before { content: '\2014 \00A0'; }
+
+blockquote cite {
+    font-weight:bold;
+}
+
+blockquote cite a { font-weight: normal; }
+
+
+dl {
+    margin: 1.6em 0;
+}
+
+dl dt {
+    float: left;
+    width: 180px;
+    overflow: hidden;
+    clear: left;
+    text-align: right;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: bold;
+    margin-bottom: 1em
+}
+
+dl dd {
+    margin-left: 200px;
+    margin-bottom: 1em
+}
+
+mark {
+    background-color: #ffc336;
+}
+
+code, tt {
+    padding: 1px 3px;
+    font-family: Inconsolata, monospace, sans-serif;
+    font-size: 0.85em;
+    white-space: pre;
+    border: 1px solid #E3EDF3;
+    background: #F7FAFB;
+    border-radius: 2px;
+}
+
+pre {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 1.6em 0;
+    border: 1px solid #E3EDF3;
+    width: 100%;
+    padding: 10px;
+    font-family: Inconsolata, monospace, sans-serif;
+    font-size: 0.9em;
+    white-space: pre;
+    overflow: auto;
+    background: #F7FAFB;
+    border-radius: 3px;
+}
+
+pre code, tt {
+    font-size: inherit;
+    white-space: -moz-pre-wrap;
+    white-space: pre-wrap;
+    background: transparent;
+    border: none;
+    padding: 0;
+}
+
+kbd {
+    display: inline-block;
+    margin-bottom: 0.4em;
+    padding: 1px 8px;
+    border: #ccc 1px solid;
+    color: #666;
+    text-shadow: #fff 0 1px 0;
+    font-size: 0.9em;
+    font-weight: bold;
+    background: #f4f4f4;
+    border-radius: 4px;
+    box-shadow: 
+        0 1px 0 rgba(0, 0, 0, 0.2), 
+        0 1px 0 0 #fff inset;
+}
+
+table {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 1.6em 0;
+    width:100%;
+    max-width: 100%;
+    background-color: transparent;
+}
+
+table th,
+table td {
+    padding: 8px;
+    line-height: 20px;
+    text-align: left;
+    vertical-align: top;
+    border-top: 1px solid #efefef;
+}
+
+table th { color: #000; }
+
+table caption + thead tr:first-child th,
+table caption + thead tr:first-child td,
+table colgroup + thead tr:first-child th,
+table colgroup + thead tr:first-child td,
+table thead:first-child tr:first-child th,
+table thead:first-child tr:first-child td {
+    border-top: 0;
+}
+
+table tbody + tbody { border-top: 2px solid #efefef; }
+
+table table table { background-color: #fff; }
+
+table tbody > tr:nth-child(odd) > td,
+table tbody > tr:nth-child(odd) > th {
+    background-color: #f6f6f6;
+}
+
+table.plain {
+    tbody > tr:nth-child(odd) > td,
+    tbody > tr:nth-child(odd) > th {
+        background: transparent;
+    }
+}
+
+input:not([type]), 
+input[type="color"], 
+input[type="email"], 
+input[type="number"], 
+input[type="password"], 
+input[type="tel"], 
+input[type="url"], 
+input[type="text"] {
+	padding: 2px 0px;
+	padding: 9px;
+	border: 1px solid #CED5DF;
+	color: #304a6d;
+	
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	
+	transition: all 250ms;
+	-webkit-transition: all 250ms;
+	-moz-transition: all 250ms;
+}
+
+input:not([type]):focus, 
+input[type="color"]:focus, 
+input[type="email"]:focus, 
+input[type="number"]:focus, 
+input[type="password"]:focus, 
+input[type="tel"]:focus, 
+input[type="url"]:focus, 
+input[type="text"]:focus {
+	outline: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	border: 1px solid #f43232;
+}
+
+
+/* ==========================================================================
+   3. Utilities - These things get used a lot
+   ========================================================================== */
+   
+/* Main wrap */
+.main {
+    position: relative;
+    z-index: 1;
+	background: #fff;
+	padding-top: 70px;
+}
+
+.main_post {
+    position: relative;
+    z-index: 1;
+	background: #fff;
+}
+
+/* Responsive Container */
+.container {
+	position: relative;
+	width: 840px;
+	margin: 0 auto;
+	padding: 0;
+}   
+
+.clearfix:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+ 
+.clearfix {
+	display: inline-block;
+}
+ 
+html[xmlns] .clearfix {
+	display: block;
+}
+ 
+* html .clearfix {
+	height: 1%;
+}
+
+/* ==========================================================================
+   4. General - The main styles for the the theme
+   ========================================================================== */
+
+/* The Big Header on index */
+.header {
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	width: 100%;
+	height: 480px;
+	position: relative;
+	margin-bottom: 0;
+
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.header h1.blog_title a {
+	display: block;
+	margin: 60px 0 0;
+	font-size: 42px;
+	text-align: center;
+	font-weight: 700;
+	color: #fff;
+	text-shadow: 2px 1px 1px rgba(0, 0, 0, 0.4);
+}
+
+.header h2.blog_description a {
+	display: block;
+	color: #fff;
+	font-size: 26px;
+	text-align: center;
+	font-weight: 300;
+	text-shadow: 2px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.header a.logo {
+	display: block;
+	padding-top: 50px;
+}
+
+/* Header on single post */
+.single_post_header {
+	background-color: #0F2036;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	width: 100%;
+	height: 480px;
+	position: relative;
+	margin-bottom: 0;
+	
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.single_post_header a.logo {
+	display: block;
+	padding-top: 50px;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	width: 100%;
+	position: relative;
+	margin-bottom: 60px;
+}
+
+.single_post_header time.post_date {
+	font-size: 17px;
+    font-family: 'Roboto Slab';
+	font-weight: 300;
+	margin-bottom: 18px;
+	margin-top: 185px;
+	display: block;
+	color: #fff;
+	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
+}
+
+.single_post_header h1.post_title {
+	font-size: 42px;
+	display: block;
+	margin: 0 0 50px;
+	padding: 0;
+	color: #fff;
+	text-shadow: 2px 1px 1px rgba(0, 0, 0, 0.4);
+}
+
+
+/* ==========================================================================
+   5. Index - Main Home Page
+   ========================================================================== */
+
+/* List of posts on homepage */
+article.post {
+	display: block;
+	overflow: hidden;
+	margin-bottom: 32px;
+}
+
+article.post .post_header {
+	display: block;
+	overflow: hidden;
+}
+
+article.post h1.post_title {
+	font-size: 27px;
+	float: left;
+}
+
+article.post time.post_date {
+	font-size: 15px;
+	font-family: 'Roboto Slab';
+	font-weight: 400;
+	float: right;
+	margin-top: 5px;
+	color: #304a6d;
+}
+
+article.post .post_excerpt {
+	font-family: 'Roboto Slab';
+	font-weight: 300;
+	font-size: 20px;
+	display: block;
+	color: #677C97;
+	padding-bottom: 37px;
+	border-bottom: 2px solid #e8ecf1;
+	margin: 0;
+}
+
+/* ==========================================================================
+   6. Single - Styles for individual post page
+   ========================================================================== */
+
+article.post_single img.hide {
+	display: none;
+}
+
+article.post_single .post_excerpt {
+	font-family: 'Roboto Slab';
+	font-weight: 300;
+	font-size: 22px;
+	line-height: 33px;
+	padding-top: 60px;
+	display: block;
+	color: #677C97;
+	padding-bottom: 42px;
+	border-bottom: 2px solid #e8ecf1;
+	margin: 0 0 42px;
+	letter-spacing: -1px;
+}
+
+article.post_single h2 {
+	font-size: 27px;
+	margin: 0 0 20px;
+}
+
+article.post_single h3 { 
+	font-size: 22px;
+	margin: 30px 0 20px;
+}
+
+article.post_single h4 {
+	font-size: 18px;
+	margin: 30px 0 20px;
+	letter-spacing: 0;
+}
+
+article.post_single img {
+	max-width: 100%;
+	display: block;
+	height: auto;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+article.post_single ul {
+	margin-bottom: 35px;
+}
+
+article.post_single ul ul {
+	margin-bottom: 0;
+}
+
+article.post_single ul li {
+	margin: 7px 0;
+}
+
+article.post_single .videoWrapper {
+	position: relative;
+	padding-bottom: 56.25%; /* 16:9 */
+	padding-top: 0;
+	height: 0;
+	margin-bottom: 30px;
+}
+article.post_single .videoWrapper iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+article.post_single .post_tags {
+	border-top: 2px solid #eff1f4;
+	margin-top: 30px;
+	margin-bottom: 10px;
+	padding-top: 30px;
+	font-size: 17px;
+	color: #677C97;
+}
+
+article.post_single .post_tags span {
+	margin-right: 6px;
+	color: #304a6d;
+}
+
+a.share {
+	font-family: "Droid Serif";
+	background: #f43232;
+	padding: 6px 8px;
+	color: #fff;
+	font-size: 14px;
+	
+	border-radius: 2px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+}
+
+a.share i {
+	font-family: "FontAwesome";
+	font-size: 14px;
+	margin-right: 5px;
+}
+
+a.share:hover {
+	background: #304a6d;
+}
+
+footer.post_footer {
+	margin-top: 40px;
+	padding-top: 50px;
+	border-top: 2px solid #eff1f4;
+	display: block;
+	padding-bottom: 60px;
+}
+
+.author_image {
+	display: inline-block;
+	float: left;
+	width: 120px;
+	height: 120px;
+}
+
+.author_image img {
+	max-width: 100%;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+.author_info {
+	display: inline-block;
+	width: 700px;
+	float: left;
+	margin-left: 20px;
+}
+
+.author_info h4.author_name {
+	font-style: normal;
+	margin: 8px 0;
+}
+
+.author_info p {
+	margin: 5px 0;
+}
+
+
+/* ==========================================================================
+   6. Third Party Elements - Embeds from other services
+   ========================================================================== */
+
+
+/* ==========================================================================
+   7. Pagination - Tools to let you flick between pages
+   ========================================================================== */
+
+/* The main wrapper for our pagination links */
+.pagination {
+    width: 100%;
+    max-width: 700px;
+    margin: 40px auto 0;
+	padding-bottom: 40px;
+    font-family: 'Droid Serif', serif;
+    font-size: 0.9em;
+    color: #7e8c9f;
+    text-align: center;
+}
+
+.pagination a {
+    color: #fff;
+}
+
+/* Push the previous/next links out to the left/right */
+.older-posts,
+.newer-posts {
+	font-family: 'Roboto Slab';
+	font-size: 14px;
+	position: absolute;
+	margin-top: -3px;
+	background: #f43232;
+	display: inline-block;
+	padding: 5px 15px;
+	text-decoration: none;
+	border-radius: 7px;
+	-moz-border-radius: 7px;
+	-webkit-border-radius: 7px;
+	transition: border ease 0.3s;
+}
+
+.older-posts {
+    right: 0;
+}
+
+.page-number {
+    display: inline-block;
+    padding: 2px 0;
+}
+
+.newer-posts {
+    left: 0;
+}
+
+.older-posts:hover,
+.newer-posts:hover {
+    border-color: #7e8c9f;
+}
+
+
+/* ==========================================================================
+   8. Footer - The bottom of every page
+   ========================================================================== */
+
+footer.foot {
+	width: 100%;
+	background: #0F2036;
+	padding: 95px 0 75px;
+	position: relative;
+	min-height: 220px;
+	overflow: hidden;
+    z-index: -2;
+}
+
+footer.foot .foot_content {
+	position: fixed;
+	z-index:-1;
+	bottom: 65px;
+	left: 0;
+	right: 0;
+}
+
+.foot_logo {
+	display: block;
+	width: 100%;
+	text-align: center;
+	padding-bottom: 28px;
+}
+
+.foot_info p {
+	text-align: center;
+	margin: 0;
+	font-size: 0.8em;
+	line-height: 1.7em;
+	color: #fff;
+}
+
+.foot_info p a.ghost_icon {
+    font-family: 'Droid Serif', serif;
+}
+
+.foot_info p a.ghost_icon:before {
+	content: "\e000";
+	font-size: 1em;
+	margin-left: 3px;
+	font-family: 'icons';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	text-decoration: none;
+}
+
+/* Social Buttons */
+.foot_social ul {
+	display: block;
+	list-style: none;
+	text-align: center;
+	margin: 28px 0;
+	padding: 0;
+}
+
+.foot_social ul li {
+	display: inline;
+}
+
+.foot_social ul li a {
+	display: inline-block;
+	width: 32px;
+	height: 32px;
+	background: #f43232;
+	font-size: 14px;
+	line-height: 33px;
+	color: #fff;
+	
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	
+	transition: all 250ms;
+	-moz-transition: all 250ms;
+	-webkit-transition: all 250ms;
+}
+
+.foot_social ul li a:hover {
+	background: #304a6d;
+}
+
+/* ==========================================================================
+   9. Media Queries - Tablet
+   ========================================================================== */
+
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+	.container {
+		width: 768px;
+	}
+	.author_info {
+		width: 620px;
+	}
+}
+
+/* ==========================================================================
+   10. Media Queries - Phone Portrait
+   ========================================================================== */
+
+@media only screen and (max-width: 767px) {
+	.container {
+		width: 300px;
+	}
+	body {
+		font-size: 14px;
+		line-height: 26px;
+	}
+	blockquote {
+		padding: 0 0 0 20px;
+	}
+	.header h2.blog_description a {
+		font-size: 22px;
+	}
+	.header a.logo {
+		text-align: center;
+	}
+	article.post time.post_date {
+		float: none;
+		display: block;
+		margin-bottom: 4px;
+	}
+	article.post h1.post_title {
+		font-size: 22px;
+		float: none;
+		display: block;
+		margin-bottom: 0;
+	}
+	article.post .post_excerpt {
+		font-size: 16px;
+	}
+	.older-posts, .newer-posts {
+		font-size: 12px;
+		margin-top: -4px;
+		padding: 3px 10px;
+	}
+	article.post_single h1.post_title {
+		font-size: 30px;
+		margin: 0 0 20px;
+	}
+	article.post_single .post_excerpt {
+		font-size: 18px;
+	}
+	.author_image {
+		width: 60px;
+		height: 60px;
+	}
+	.author_info {
+		width: 220px;
+	}
+	.header, 
+	.single_post_header {
+		height: 420px;
+		position: relative;
+		z-index: -2;
+		background-repeat: no-repeat!important;
+		background-attachment: fixed!important;
+		background-position: 50% 0!important;
+		background-size: auto 420px!important;
+		-webkit-background-size: auto 420px!important;
+	}
+
+}
+
+/* ==========================================================================
+   11. Media Queries - Phone Landscape
+   ========================================================================== */
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+	body {
+		font-size: 15px;
+		line-height: 26px;
+	}
+	.container {
+		width: 420px;
+	}
+	.header h2.blog_description a {
+		font-size: 22px;
+	}
+	article.post_single .post_excerpt {
+		font-size: 18px;
+	}
+	article.post h1.post_title {
+		font-size: 22px;
+	}
+	article.post .post_excerpt {
+		font-size: 16px;
+	}
+	article.post_single h1.post_title {
+		font-size: 30px;
+		margin: 0 0 20px;
+	}
+	.author_image {
+		width: 80px;
+		height: 80px;
+	}
+	.author_info {
+		width: 320px;
+	}
+}
+
+
+/* ==========================================================================
+   End of file. 
+   ========================================================================== */
