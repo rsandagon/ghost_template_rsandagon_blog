@@ -1,6 +1,6 @@
 # Rsandagon Blog
 
-Minimal and responsive which is running on [Ghost](http://ghost.org/)&mdash;. This is based on [Phantom](http://themeforest.net/item/phantom-flat-parallax-responsive-ghost-theme/5893046)]
+Minimal and responsive which is running on [Ghost](http://ghost.org/)&mdash;. This is based on [Phantom](http://themeforest.net/item/phantom-flat-parallax-responsive-ghost-theme/5893046)
 
 Supports blog and user images; cover images, while supported in the Ghost admin.
 
